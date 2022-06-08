@@ -3,6 +3,7 @@ import math
 import warnings
 from torch import nn
 from torch import nn, Tensor
+from .mit import MiT
 
 
 def _no_grad_trunc_normal_(tensor, mean, std, a, b):

@@ -1,33 +1,15 @@
-from tkinter import N
 import torch
 from torch import Tensor
-import torch.nn as nn
 from torch.nn import functional as F
+from .base import BaseModel
 from .head import SegFormerHead
 
 
-class SegFormer(nn.Module):
-    @classmethod
-    def load_pretrained(backbone, num_classes): 
-        model = SegFormer(backbone, num_classes=19)
-        path_dict = {
-            "MiT-B1": "/content/drive/MyDrive/2-專案/玉山-醫學影像切割比賽/models/segformer.b1.ade.pth",
-            'MiT-B2': "/content/drive/MyDrive/2-專案/玉山-醫學影像切割比賽/models/segformer.b2.ade.pth",
-            'MiT-B3': "/content/drive/MyDrive/2-專案/玉山-醫學影像切割比賽/models/segformer.b3.ade.pth"
-        }
-
-
-        model.load_state_dict(torch.load(path_dict.get(backbone), map_location='cpu'))
-        model.decode_head.linear_pred = nn.Conv2d(
-            model.decode_head.linear_pred.in_channels,
-            num_classes, kernel_size=1
-        )
-        return model
-
+class SegFormer(BaseModel):
     def __init__(self, backbone: str = 'MiT-B0', num_classes: int = 19) -> None:
-        backbone, variant = backbone.split('-')
-        self.backbone = eval(backbone)(variant)
+        super().__init__(backbone, num_classes)
         self.decode_head = SegFormerHead(self.backbone.channels, 256 if 'B0' in backbone or 'B1' in backbone else 768, num_classes)
+        self.apply(self._init_weights)
 
     def forward(self, x: Tensor) -> Tensor:
         y = self.backbone(x)
@@ -38,6 +20,7 @@ class SegFormer(nn.Module):
 
 if __name__ == '__main__':
     model = SegFormer('MiT-B0')
+    # model.load_state_dict(torch.load('checkpoints/pretrained/segformer/segformer.b0.ade.pth', map_location='cpu'))
     x = torch.zeros(1, 3, 512, 512)
     y = model(x)
     print(y.shape)
