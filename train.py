@@ -3,7 +3,6 @@ import glob
 import time
 import numpy as np 
 import argparse
-from batch_sampler import BatchSampler,RandomSampler
 from data import StasDataset, Train_Preprocessor, Test_Preprocessor
 from torch.utils.data import DataLoader
 import torch.nn as nn
@@ -40,39 +39,29 @@ def train():
     print(f"Training set: {len(train_path_list)} images. \nValidation set: {len(test_path_list)} images. \n")
     
     # preprocesor 
-    train_image_transform = Train_Preprocessor(None if do_multiscale else train_img_size,
-                                         h_flip_p=h_flip_p,
-                                         v_flip_p=v_flip_p)
+    train_image_transform = Train_Preprocessor(
+        None if do_multiscale else train_img_size,
+        h_flip_p=h_flip_p, v_flip_p=v_flip_p
+    )
+
     test_image_transform = Test_Preprocessor(test_img_size)
     
     # dataset
     train_dataset = StasDataset(train_path_list, label_dir, train_image_transform, ann_suffix)
     test_dataset = StasDataset(test_path_list, label_dir, test_image_transform, ann_suffix)
-    
-    # batchsampler & dataloader 
-    if do_multiscale:
-        batch_sampler = BatchSampler(RandomSampler(train_dataset),
-                                     batch_size=train_batch_size,
-                                     drop_last=False,
-                                     multiscale_step=multiscale_step,
-                                     img_sizes=multiscale_list)
-        shuffle = False
-    else: 
-        batch_sampler = None
-        shuffle = True
         
     train_dataloader = DataLoader(
         dataset=train_dataset,
         batch_size=train_batch_size,
-        batch_sampler=batch_sampler,
         num_workers=num_workers,
-        shuffle=shuffle
+        shuffle=True
     )
    
     test_dataloader = DataLoader(
-        test_dataset, 
+        dataset=test_dataset, 
         batch_size=test_batch_size, 
-        num_workers=num_workers)
+        num_workers=num_workers
+    )
 
     # create model
     if checkpoint_path is not None: 
