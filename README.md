@@ -1,14 +1,7 @@
 ## 安裝
 ```python
 git clone https://github.com/travisergodic/STAS-segmentation.git
-pip install segmentation-models-pytorch
-pip install numpy
-pip install Pillow
-pip install ttach
-pip install kornia
-
 pip install -r requirements.txt
-
 cd STAS-segmentation/
 git clone https://github.com/davda54/sam.git
 mkdir pretrained/
