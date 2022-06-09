@@ -6,6 +6,12 @@ from .head import SegFormerHead
 
 
 class SegFormer(BaseModel):
+    @classmethod
+    def load_pretrained(cls, backbone, num_classes): 
+        model = SegFormer(backbone, 150)
+        model.load_state_dict(torch.load('/pretrained/segformer.b0.ade.pth', map_location='cpu'))
+        return model
+
     def __init__(self, backbone: str = 'MiT-B0', num_classes: int = 19) -> None:
         super().__init__(backbone, num_classes)
         self.decode_head = SegFormerHead(self.backbone.channels, 256 if 'B0' in backbone or 'B1' in backbone else 768, num_classes)
