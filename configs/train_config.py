@@ -48,8 +48,8 @@ model_dict = {
 
 ## save
 save_config = {
-    "path": './checkpints/model_segformer.pt',
-    "best_path": './checkpoints/model_segformer.pt',
+    "path": './checkpoints/model_segformer.pt',
+    "best_path": './checkpoints/model_segformer_best.pt',
     "freq": 5
 }
 
