@@ -9,8 +9,8 @@ DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 distributed = False
 
 # config
-train_image_dir = '/content/STAS-segmentation/Train_Images/'
-label_dir = '/content/STAS-segmentation/Annotations/'
+train_image_dir = './Train_Images/'
+label_dir = './Annotations/'
 seed = 14
 
 # preprocess
@@ -24,8 +24,8 @@ affine_p=0.
 
 # dataloader
 train_ratio = 0.85
-train_batch_size = 7
-test_batch_size =  14
+train_batch_size = 8
+test_batch_size =  16
 num_workers = 2
 
 # train config 
@@ -48,8 +48,8 @@ model_dict = {
 
 ## save
 save_config = {
-    "path": './models/model_v2.pt',
-    "best_path": './models/model_v2_best.pt',
+    "path": './checkpints/model_segformer.pt',
+    "best_path": './checkpoints/model_segformer.pt',
     "freq": 5
 }
 
