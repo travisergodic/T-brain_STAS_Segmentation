@@ -14,7 +14,8 @@ class SegFormer(BaseModel):
         # load pretrained 
         pretrained_path_dict = {
             'MiT-B1': './pretrained/segformer.b1.ade.pth',
-            'MiT-B2': './pretrained/segformer.b2.ade.pth'
+            'MiT-B2': './pretrained/segformer.b2.ade.pth',
+            'MiT-B3': './pretrained/segformer.b3.ade.pth'
         }
         model.load_state_dict(torch.load(pretrained_path_dict[backbone], map_location='cpu'))
 
@@ -40,7 +41,6 @@ class SegFormer(BaseModel):
 
 if __name__ == '__main__':
     model = SegFormer('MiT-B0')
-    # model.load_state_dict(torch.load('checkpoints/pretrained/segformer/segformer.b0.ade.pth', map_location='cpu'))
     x = torch.zeros(1, 3, 512, 512)
     y = model(x)
     print(y.shape)

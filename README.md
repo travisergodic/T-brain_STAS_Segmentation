@@ -20,10 +20,10 @@ python train.py --config_file "train_config.py"
 ```
 2. **評估**
 ```python
-python test.py --model_paths "'./checkpoints/model_segformer.pt'"
+python test.py --model_paths "./checkpoints/model_segformer.pt"
 ```
 3. **預測**
 ```python
-python predict.py --model_paths "./models/model_path.pt" --target_dir "./data/Public_Image/" \
+python predict.py --model_paths "./checkpoints/model_segformer.pt" --target_dir "./Public_Image/" \
                 --mask_mode "color" --do_tta "True"
 ```
