@@ -2,7 +2,7 @@ import torch
 from torch import optim
 import segmentation_models_pytorch as smp
 import ttach as tta
-import segformer
+from segformer.segformer import SegFormer
 
 # device 
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -41,9 +41,8 @@ optim_dict = {
 ## model 
 checkpoint_path = None
 model_dict = {
-    'model_cls': segformer.build_segformer,
+    'model_cls': SegFormer.load_pretrained,
     'backbone': 'MiT-B2',
-    'pretrained': True,
     'num_classes': 1
 }
 
