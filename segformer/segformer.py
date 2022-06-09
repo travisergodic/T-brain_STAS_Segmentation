@@ -1,5 +1,6 @@
 import torch
 from torch import Tensor
+from torch import nn
 from torch.nn import functional as F
 from .base import BaseModel
 from .head import SegFormerHead
@@ -7,9 +8,22 @@ from .head import SegFormerHead
 
 class SegFormer(BaseModel):
     @classmethod
-    def load_pretrained(cls, backbone, num_classes): 
+    def load_pretrained(cls, backbone, num_classes):
+        # build model  
         model = SegFormer(backbone, 150)
-        model.load_state_dict(torch.load('/pretrained/segformer.b0.ade.pth', map_location='cpu'))
+        # load pretrained 
+        pretrained_path_dict = {
+            'MiT-B1': './pretrained/segformer.b1.ade.pth',
+            'MiT-B2': './pretrained/segformer.b2.ade.pth'
+        }
+        model.load_state_dict(torch.load(pretrained_path_dict[backbone], map_location='cpu'))
+
+        # change linear_pred head 
+        model.decode_head.linear_pred = nn.Conv2d(
+            model.decode_head.linear_pred.in_channels,
+            num_classes, 
+            kernel_size=(1, 1)
+        )
         return model
 
     def __init__(self, backbone: str = 'MiT-B0', num_classes: int = 19) -> None:
