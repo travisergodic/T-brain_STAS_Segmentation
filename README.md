@@ -10,7 +10,7 @@ mkdir checkpoints/
 
 ## 前期準備
 1. 下載預訓練模型: https://drive.google.com/drive/folders/1dg-VfFPqnkJuTeqRKZD5QJzhKqT32cx0?usp=sharing
-2. 將預訓練模型放入 pretrained 資料夾
+2. 將預訓練模型放入 `pretrained` 資料夾
 3. 將 `Annotations.zip`, `Train_Images.zip` 解壓縮，放入 `STAS-segmentation/` 資料夾
 
 ## 使用
