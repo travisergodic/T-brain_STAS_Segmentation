@@ -10,7 +10,7 @@ pip install kornia
 pip install -r requirements.txt
 
 cd STAS-segmentation/
-https://github.com/davda54/sam.git
+git clone https://github.com/davda54/sam.git
 mkdir pretrained/
 mkdir checkpoints/
 ```

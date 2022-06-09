@@ -40,8 +40,9 @@ def train():
     
     # preprocesor 
     train_image_transform = Train_Preprocessor(
-        None if do_multiscale else train_img_size,
-        h_flip_p=h_flip_p, v_flip_p=v_flip_p
+        train_img_size,
+        h_flip_p=h_flip_p, 
+        v_flip_p=v_flip_p
     )
 
     test_image_transform = Test_Preprocessor(test_img_size)
