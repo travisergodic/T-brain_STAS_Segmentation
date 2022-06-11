@@ -16,7 +16,7 @@ mkdir checkpoints/
 ## 使用
 1. **訓練**
 ```python
-python train.py --config_file "train_config.py"
+python train.py --config_file "train_config_segformer.py"
 ```
 2. **評估**
 ```python

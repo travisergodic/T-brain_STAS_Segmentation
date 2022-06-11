@@ -16,21 +16,21 @@ seed = 14
 # preprocess
 ann_suffix = '.npz'
 img_suffix = '.jpg'
-train_img_size = (512, 512)
-test_img_size = (512, 512)
+train_img_size = (384, 384)
+test_img_size = (384, 384)
 h_flip_p=0.5
 v_flip_p=0.5
 affine_p=0.
 
 # dataloader
 train_ratio = 0.85
-train_batch_size = 8
-test_batch_size =  16
+train_batch_size = 16
+test_batch_size =  32
 num_workers = 2
 
 # train config 
-num_epoch = 50
-decay_fn = lambda n: 1
+num_epoch = 100
+decay_fn = lambda n: 1 if n<=40 else 0.2
 regularization_option = "normal"    # options: "sam", "mixup", "cutmix", "normal", "half_cutmix" 
 optim_dict = {
     'optim_cls': optim.Adam, 
@@ -41,15 +41,17 @@ optim_dict = {
 ## model 
 checkpoint_path = None
 model_dict = {
-    'model_cls': SegFormer.load_pretrained,
-    'backbone': 'MiT-B2',
-    'num_classes': 1
+    'model_cls': smp.Unet,
+    'encoder_name': 'tf_efficientnetv2_l_in21k',       
+    'encoder_weights': 'imagenet',     
+    'in_channels': 3,                  
+    'classes': 1                      
 }
 
 ## save
 save_config = {
-    "path": './checkpoints/model_segformer.pt',
-    "best_path": './checkpoints/model_segformer_best.pt',
+    "path": './checkpoints/model_unet_efficientv2_l.pt',
+    "best_path": './checkpoints/model_unet_efficientv2_l_best.pt',
     "freq": 5
 }
 
