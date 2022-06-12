@@ -50,7 +50,7 @@ mkdir final_models/
    + 執行指令
 
      ```python
-     python predict.py --model_paths "./final_model/unetpp_efficientnetv2_large.pt" --target_dir "./Public_Image/" \
+     python predict.py --model_paths "./final_models/unetpp_efficientnetv2_large.pt" --target_dir "./Public_Image/" \
                      --mask_mode "color" --do_tta "True"
      ```
 
@@ -74,7 +74,7 @@ mkdir final_models/
    + 執行指令
 
      ```python
-     python predict.py --model_paths "./final_model/unetpp_efficientnetv2_large.pt, ./final_models/segformer_b2.pt" --target_dir "./Public_Image/" \
+     python predict.py --model_paths "./final_models/unetpp_efficientnetv2_large.pt, ./final_models/segformer_b2.pt" --target_dir "./Public_Image/" \
                      --mask_mode "color" --do_tta "True"
      ```
 
