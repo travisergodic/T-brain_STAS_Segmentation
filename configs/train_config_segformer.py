@@ -29,7 +29,7 @@ test_batch_size =  16
 num_workers = 2
 
 # train config 
-num_epoch = 50
+num_epoch = 100
 decay_fn = lambda n: 1 if n<=40 else 0.2
 regularization_option = "normal"    # options: "sam", "mixup", "cutmix", "normal", "half_cutmix" 
 optim_dict = {
