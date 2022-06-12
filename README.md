@@ -19,7 +19,7 @@ mkdir final_models/
    + 放在 `STAS-segmentation/` 路徑
 3. **下載比賽所使用模型**：
    + 下載路徑：https://drive.google.com/drive/u/0/folders/1yCYWUaCtR6ODbRGXnPmRyaf1FYSznA3Z
-   + 將 `segformer_b2.pt`,  `unetpp_efficientnetv2_large.pt` 放在 `final_models` 路徑
+   + 將 `segformer_b2.pt`,  `unetpp_efficientnetv2_large.pt` 放在 `final_models/` 路徑
 
 ## 使用方法
 1. **訓練**
