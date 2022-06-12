@@ -1,7 +1,7 @@
 ## 前期準備
 ```python
-git clone https://github.com/travisergodic/STAS-segmentation.git
-cd STAS-segmentation/
+git clone https://github.com/travisergodic/T-brain_STAS_Segmentation.git
+cd T-brain_STAS_Segmentation.git/
 pip install -r requirements.txt
 git clone https://github.com/davda54/sam.git
 mkdir pretrained/
