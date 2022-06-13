@@ -25,7 +25,10 @@ mkdir final_models/
 1. **訓練**
 
    ```python
+   # train segformer
    python train.py --config_file "train_config_segformer.py"
+   # train unetpp
+   python train.py --config_file "train_config_unetpp.py"
    ```
 2. **評估**
 

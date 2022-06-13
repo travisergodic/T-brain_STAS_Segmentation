@@ -50,7 +50,7 @@ model_dict = {
 save_config = {
     "path": './checkpoints/model_segformer.pt',
     "best_path": './checkpoints/model_segformer_best.pt',
-    "freq": 5
+    "freq": 1
 }
 
 ## loss function 

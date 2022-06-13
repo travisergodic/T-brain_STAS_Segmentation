@@ -41,7 +41,7 @@ optim_dict = {
 ## model 
 checkpoint_path = None
 model_dict = {
-    'model_cls': smp.Unet,
+    'model_cls': smp.UnetPlusPlus,
     'encoder_name': 'tf_efficientnetv2_l_in21k',       
     'encoder_weights': 'imagenet',     
     'in_channels': 3,                  
@@ -52,7 +52,7 @@ model_dict = {
 save_config = {
     "path": './checkpoints/model_unet_efficientv2_l.pt',
     "best_path": './checkpoints/model_unet_efficientv2_l_best.pt',
-    "freq": 5
+    "freq": 1
 }
 
 ## loss function 
