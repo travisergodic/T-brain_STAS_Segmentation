@@ -42,7 +42,7 @@ optim_dict = {
 checkpoint_path = None
 model_dict = {
     'model_cls': smp.UnetPlusPlus,
-    'encoder_name': 'tf_efficientnetv2_l_in21k',       
+    'encoder_name': 'tu-tf_efficientnetv2_l_in21k',       
     'encoder_weights': 'imagenet',     
     'in_channels': 3,                  
     'classes': 1                      
